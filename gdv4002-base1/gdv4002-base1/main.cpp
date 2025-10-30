@@ -2,6 +2,13 @@
 
 // Function prototypes
 
+void myUpdate(GLFWwindow* window, double tDelta) {
+	float player1RotationSpeed = glm::radians(90.0f);
+	GameObject2D* player1 = getObject("Player1");
+	if (player1 != nullptr) {
+		player1->orientation += player1RotationSpeed * tDelta;
+	}
+}
 
 int main(void) {
 
@@ -18,11 +25,17 @@ int main(void) {
 	//
 	// Setup game scene objects here
 	//
-	
-
+	setUpdateFunction(myUpdate);
+	addObject("Player1",glm::vec2(1.0f,1.0f),glm::radians(45.0f),glm::vec2(1.0f,1.0f),"Resources\\Textures\\mcblock01.png",TextureProperties::NearestFilterTexture());
+	addObject("Player2",glm::vec2(-0.5f,-0.5f),glm::radians(270.0f),glm::vec2(1.0f,1.0f),"Resources\\Textures\\mcblock01.png",TextureProperties::NearestFilterTexture());
+	GameObject2D* player1Object = getObject("Player1");
+	if (player1Object != nullptr) {
+		player1Object->position = player1Object->position + glm::vec2(-2.0f, -1.0f);
+		player1Object->orientation = glm::radians(10.0f);
+		player1Object->textureID = loadTexture("Resources\\Textures\\bumblebee.png");
+	}
 	// Enter main loop - this handles update and render calls
 	engineMainLoop();
-
 	// When we quit (close window for example), clean up engine resources
 	engineShutdown();
 
