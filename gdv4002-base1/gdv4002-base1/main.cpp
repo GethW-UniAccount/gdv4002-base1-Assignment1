@@ -2,16 +2,7 @@
 
 // Function prototypes
 
-void myUpdate(GLFWwindow* window, double tDelta) {
-	//
-	//Update function, do not forget delta timing
-	//
-	float player1RotationSpeed = glm::radians(90.0f);
-	GameObject2D* player1 = getObject("Player1");
-	if (player1 != nullptr) {
-		player1->orientation += player1RotationSpeed * tDelta;
-	}
-}
+void MyKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 int main(void) {
 
@@ -26,10 +17,14 @@ int main(void) {
 	}
 
 	//
+	//Create Variables to be used later:
+	// 
+
+	// 
 	// Setup game scene objects here
 	//
-	setUpdateFunction(myUpdate);
-	addObject("Player1",glm::vec2(1.0f,1.0f),glm::radians(45.0f),glm::vec2(1.0f,1.0f),"Resources\\Textures\\SpaceShip.png",TextureProperties::NearestFilterTexture());
+	
+	addObject("Player",glm::vec2(1.0f,1.0f),glm::radians(45.0f),glm::vec2(1.0f,1.0f),"Resources\\Textures\\Ship.png",TextureProperties::NearestFilterTexture());
 	GameObject2D* player1Object = getObject("Player1");
 	if (player1Object != nullptr) {
 		player1Object->position = player1Object->position + glm::vec2(-2.0f, -1.0f);
@@ -45,4 +40,17 @@ int main(void) {
 	return 0;
 }
 
+void MyKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	
+	if (action == GLFW_PRESS) {
+		switch (key)
+		{
+		case GLFW_KEY_ESCAPE:
+			glfwSetWindowShouldClose(window, true);
+			break;
+		}
+	}
 
+
+}
