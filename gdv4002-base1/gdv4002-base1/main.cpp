@@ -1,8 +1,10 @@
 #include "Engine.h"
-
+#include "PlayerShip.h"
 // Function prototypes
 
 void MyKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods);
+
+
 
 int main(void) {
 
@@ -24,13 +26,11 @@ int main(void) {
 	// Setup game scene objects here
 	//
 	
-	addObject("Player",glm::vec2(1.0f,1.0f),glm::radians(45.0f),glm::vec2(1.0f,1.0f),"Resources\\Textures\\Ship.png",TextureProperties::NearestFilterTexture());
-	GameObject2D* player1Object = getObject("Player1");
-	if (player1Object != nullptr) {
-		player1Object->position = player1Object->position + glm::vec2(-2.0f, -1.0f);
-		player1Object->orientation = glm::radians(10.0f);
-		player1Object->textureID = loadTexture("Resources\\Textures\\SpaceShip.png");
-	}
+
+	PlayerShip* Player = new PlayerShip();
+	setKeyboardHandler(MyKeyboardHandler);
+
+
 	// Enter main loop - this handles update and render calls
 	engineMainLoop();
 	// When we quit (close window for example), clean up engine resources
@@ -40,17 +40,58 @@ int main(void) {
 	return 0;
 }
 
+
+
 void MyKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	
+	//bitwise operations learned  from https://www.geeksforgeeks.org/cpp/cpp-bitwise-operators/
 	if (action == GLFW_PRESS) {
 		switch (key)
 		{
+			
+			case GLFW_KEY_ESCAPE:
+				glfwSetWindowShouldClose(window, true);
+				break;
+			case GLFW_KEY_W:
+				PlayerShip::Inputs::InForward | 1;
+				break;
+			case GLFW_KEY_A:
+				PlayerShip::Inputs::InLeft | 1;
+				break;
+			case GLFW_KEY_S:
+				PlayerShip::Inputs::InDown | 1;
+				break;
+			case GLFW_KEY_D:
+				PlayerShip::Inputs::InRight | 1;
+				break;
+			case GLFW_KEY_SPACE:
+				PlayerShip::Inputs::InFire | 1;
+				break;
+		}
+	}
+	if (action == GLFW_RELEASE) {
+		switch (key)
+		{
+
 		case GLFW_KEY_ESCAPE:
 			glfwSetWindowShouldClose(window, true);
 			break;
+		case GLFW_KEY_W:
+			PlayerShip::Inputs::InForward | 1;
+			break;
+		case GLFW_KEY_A:
+			PlayerShip::Inputs::InLeft | 1;
+			break;
+		case GLFW_KEY_S:
+			PlayerShip::Inputs::InDown | 1;
+			break;
+		case GLFW_KEY_D:
+			PlayerShip::Inputs::InRight | 1;
+			break;
+		case GLFW_KEY_SPACE:
+			PlayerShip::Inputs::InFire | 1;
+			break;
 		}
 	}
-
 
 }
