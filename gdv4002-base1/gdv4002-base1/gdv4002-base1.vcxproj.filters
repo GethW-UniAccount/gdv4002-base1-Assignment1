@@ -40,7 +40,7 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="PlayerShip.cpp">
-      <Filter>Engine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
