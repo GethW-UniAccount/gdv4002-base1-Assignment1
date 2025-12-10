@@ -16,6 +16,37 @@ PlayerShip::PlayerShip(glm::vec2 initPos, float initRot, glm::vec2 initSize, GLu
 	
 }
 void PlayerShip::update(double tDelta) {
-	
+	//input check - W
+	if (InForward)
+	{
+		if (linearVelocity < speedCap)
+		{
+			linearVelocity += acceleration*tDelta;
+		}
+	}
+	//input check - A
+	if (InLeft)
+	{
+		if (rotationVelocity < turnSpeedCap)
+		{
+			rotationVelocity -= turnSpeed * tDelta;
+		}
+	}
+	//input check - D
+	if (InRight)
+	{
+		if (rotationVelocity < turnSpeedCap)
+		{
+			rotationVelocity += turnSpeed * tDelta;
+		}
+	}
+	//input check - SPACE
+	if (InFire)
+	{
+		if (firecooldown )
+		{
+			rotationVelocity += turnSpeed * tDelta;
+		}
+	}
 }
 

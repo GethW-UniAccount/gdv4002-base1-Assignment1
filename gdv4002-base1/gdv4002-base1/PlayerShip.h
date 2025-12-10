@@ -20,7 +20,10 @@ public:
 		//Unused		= 0x40,
 		//Unused		= 0x80,
 	};
-	float		acceleration = 1.0f;
+	float		acceleration = 0.1f;
+	float		speedCap = 10.0f;
+	float		turnSpeed = 1.0f;
+	float		turnSpeedCap = 10.0f;
 	float		fireRate = 1.0f;
 	int			extraLives = 2;
 	bool		shield = false;
@@ -30,5 +33,7 @@ public:
 	virtual void update(double tDelta) override;
 private:
 	glm::vec2		velocity = glm::vec2(0,0);
-	float			angularVelocity = 0.0f;
+	float			rotationVelocity = 0.0f;
+	float			linearVelocity = 0.0f;
+	float			firecooldown = 0.0f;
 };
