@@ -7,9 +7,11 @@ public:
 	//idea to use Enums from C++ Forums and Medium:
 	//https://cplusplus.com/forum/general/1590/
 	//https://dietertack.medium.com/using-bit-flags-in-c-d39ec6e30f08
-	//  "00000000 -> Our current flag value is 0
-	//| 00000100->Do or operation with Flag3, which has a value of 4
-	//	= 00000100->The bit for Flag3 gets set to 1, flag value is now 4"
+	// "
+	//	  00000000 -> Our current flag value is 0
+	//	| 00000100 ->Do or operation with Flag3, which has a value of 4
+	//	= 00000100 ->The bit for Flag3 gets set to 1, flag value is now 4
+	// "
 	static enum Inputs {
 		InForward	= 0x01,
 		InLeft		= 0x02,
@@ -36,4 +38,5 @@ private:
 	float			rotationVelocity = 0.0f;
 	float			linearVelocity = 0.0f;
 	float			firecooldown = 0.0f;
+	void Fire();
 };
