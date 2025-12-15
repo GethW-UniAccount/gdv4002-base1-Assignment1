@@ -2,9 +2,9 @@
 #include "PlayerShip.h"
 // Function prototypes
 
-void MyKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods);
+void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-
+void myUpdate(GLFWwindow* window, double tDelta);
 
 int main(void) {
 
@@ -17,7 +17,6 @@ int main(void) {
 		printf("Cannot setup game window!!!\n");
 		return initResult; // exit if setup failed
 	}
-
 	//
 	//Create Variables to be used later:
 	// 
@@ -25,10 +24,10 @@ int main(void) {
 	// 
 	// Setup game scene objects here
 	//
-	
+	setUpdateFunction(myUpdate);
 
 	PlayerShip* Player = new PlayerShip();
-	setKeyboardHandler(MyKeyboardHandler);
+	setKeyboardHandler(myKeyboardHandler);
 
 
 	// Enter main loop - this handles update and render calls
@@ -42,7 +41,7 @@ int main(void) {
 
 
 
-void MyKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods)
+void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	//bitwise operations learned  from https://www.geeksforgeeks.org/cpp/cpp-bitwise-operators/
 	if (action == GLFW_PRESS) {
@@ -94,4 +93,7 @@ void MyKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, in
 		}
 	}
 
+}
+void myUpdate(GLFWwindow* window, double tDelta) {
+	//add update function for player here.
 }
