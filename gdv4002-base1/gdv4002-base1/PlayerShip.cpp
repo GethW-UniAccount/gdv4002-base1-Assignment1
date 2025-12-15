@@ -24,9 +24,10 @@ void PlayerShip::Fire() {
 void PlayerShip::update(double tDelta) {
 
 	//position update
-	//THANK YOU https://www.mathsisfun.com/polar-cartesian-coordinates.html
+	//THANK YOU, https://www.mathsisfun.com/polar-cartesian-coordinates.html
 	velocity = glm::vec2((cos(orientation) * linearVelocity), (sin(orientation) * linearVelocity));
-	position += velocity;
+	//update it FPS-independently via TDelta
+
 
 	//Cooldown for firing
 	if (firecooldown > 0.0001)
