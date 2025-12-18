@@ -24,10 +24,11 @@ int main(void) {
 	// 
 	// Setup game scene objects here
 	//
-	setUpdateFunction(myUpdate);
+	//Use the default update function, no need to set a callback here.
+	setKeyboardHandler(myKeyboardHandler);
 
 	PlayerShip* Player = new PlayerShip();
-	setKeyboardHandler(myKeyboardHandler);
+	addObject("player", Player);
 
 
 	// Enter main loop - this handles update and render calls
@@ -93,7 +94,4 @@ void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, in
 		}
 	}
 
-}
-void myUpdate(GLFWwindow* window, double tDelta) {
-	//add update function for player here.
 }

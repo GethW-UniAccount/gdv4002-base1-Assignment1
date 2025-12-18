@@ -26,9 +26,9 @@ void PlayerShip::update(double tDelta) {
 	//position update
 	//THANK YOU, https://www.mathsisfun.com/polar-cartesian-coordinates.html
 	velocity = glm::vec2((cos(orientation) * linearVelocity), (sin(orientation) * linearVelocity));
-	//update it FPS-independently via TDelta
-
-
+	//update it FPS-independently via TDelta, casted to float
+	//Thank you, https://www.geeksforgeeks.org/cpp/casting-operators-in-cpp/
+	position += velocity * static_cast<float>(tDelta);
 	//Cooldown for firing
 	if (firecooldown > 0.0001)
 	{
