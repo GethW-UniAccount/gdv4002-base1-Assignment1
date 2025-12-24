@@ -4,7 +4,7 @@ PlayerShip::PlayerShip()
 {
 	GameObject2D::position = glm::vec2(0,0);
 	GameObject2D::orientation = 0.0f;
-	GameObject2D::size = glm::vec2(1,1);
+	GameObject2D::size = glm::vec2(0.25f,0.25f);
 	GameObject2D::textureID = loadTexture("Resources\\Textures\\Ship.png");
 }
 
@@ -23,12 +23,17 @@ void PlayerShip::Fire() {
 
 void PlayerShip::update(double tDelta) {
 
+	
 	//position update
 	//THANK YOU, https://www.mathsisfun.com/polar-cartesian-coordinates.html
 	velocity = glm::vec2((cos(orientation) * linearVelocity), (sin(orientation) * linearVelocity));
+
 	//update it FPS-independently via TDelta, casted to float
 	//Thank you, https://www.geeksforgeeks.org/cpp/casting-operators-in-cpp/
 	position += velocity * static_cast<float>(tDelta);
+
+	//Decay velocity based on TDelta
+	velocity -= (0.1f * static_cast<float>(tDelta));
 	//Cooldown for firing
 	if (firecooldown > 0.0001)
 	{
@@ -66,12 +71,18 @@ void PlayerShip::update(double tDelta) {
 			Fire();
 		}
 	}
-
+	std::cout << "\nLinearVelocity\n"
+		<< linearVelocity
+		<< "\nRotationVelocity\n"
+		<< rotationVelocity
+		<< "\nvelocity as Vector\n"
+		<< velocity.x
+		<< "\n"
+		<< velocity.y;
+		
 
 	//This section is for textures, it's a lot of if statements that will be a pain to untangle,
-	//though unfortunately, I don't see much of an alternative.
-
-	//The unpleasant section ends at this comment
+	//though unfortunately, I don't see much of an alternative, i may just leave this out and use the one base ship texture and its shielded variant instead though.
 
 	render();
 }
