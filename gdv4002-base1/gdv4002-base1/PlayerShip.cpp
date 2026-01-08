@@ -24,13 +24,7 @@ void PlayerShip::Fire() {
 void PlayerShip::update(double tDelta) {
 
 	
-	//position update
-	//THANK YOU, https://www.mathsisfun.com/polar-cartesian-coordinates.html
-	velocity = glm::vec2((cos(orientation) * linearVelocity), (sin(orientation) * linearVelocity));
-
-	//update it FPS-independently via TDelta, casted to float
-	//Thank you, https://www.geeksforgeeks.org/cpp/casting-operators-in-cpp/
-	position += velocity * static_cast<float>(tDelta);
+	
 
 	//Decay velocity based on TDelta
 	velocity -= (0.1f * static_cast<float>(tDelta));
@@ -44,24 +38,18 @@ void PlayerShip::update(double tDelta) {
 	{
 		if (linearVelocity < speedCap)
 		{
-			linearVelocity += acceleration*tDelta;
+			
 		}
 	}
 	//input check - A
 	if (InLeft)
 	{
-		if (rotationVelocity < turnSpeedCap)
-		{
-			rotationVelocity -= turnSpeed * tDelta;
-		}
+		GameObject2D::orientation -= (1 * tDelta);
 	}
 	//input check - D
 	if (InRight)
 	{
-		if (rotationVelocity < turnSpeedCap)
-		{
-			rotationVelocity += turnSpeed * tDelta;
-		}
+		GameObject2D::orientation += (1 * tDelta);
 	}
 	//input check - SPACE
 	if (InFire)
@@ -71,14 +59,7 @@ void PlayerShip::update(double tDelta) {
 			Fire();
 		}
 	}
-	std::cout << "\nLinearVelocity\n"
-		<< linearVelocity
-		<< "\nRotationVelocity\n"
-		<< rotationVelocity
-		<< "\nvelocity as Vector\n"
-		<< velocity.x
-		<< "\n"
-		<< velocity.y;
+	
 		
 
 	//This section is for textures, it's a lot of if statements that will be a pain to untangle,

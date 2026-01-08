@@ -1,10 +1,11 @@
 #include "Engine.h"
 #include "PlayerShip.h"
+#include "ReferencePoint.h"
+#include <filesystem>
 // Function prototypes
 
 void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods);
 
-void myUpdate(GLFWwindow* window, double tDelta);
 
 int main(void) {
 
@@ -26,11 +27,12 @@ int main(void) {
 	//
 	//Use the default update function, no need to set a callback here.
 	setKeyboardHandler(myKeyboardHandler);
-
+	std::srand(time(0));
 	PlayerShip* Player = new PlayerShip();
 	addObject("player", Player);
-
-
+	ReferencePoint* Ref = new ReferencePoint();
+	addObject("ref", Ref);
+	
 	// Enter main loop - this handles update and render calls
 	engineMainLoop();
 	// When we quit (close window for example), clean up engine resources

@@ -45,6 +45,9 @@
     <ClCompile Include="Asteroid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ReferencePoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerShip.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReferencePoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -142,9 +148,6 @@
     <Image Include="Resources\Textures\UFODamage.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Resources\Textures\LifePickup.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Resources\Textures\PowerUpCrate.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -164,6 +167,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Resources\Textures\ShipDestroy1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\ReferencePointMarker.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
