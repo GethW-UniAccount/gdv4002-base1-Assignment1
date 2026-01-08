@@ -9,8 +9,8 @@ ReferencePoint::ReferencePoint()
 	GameObject2D::position = glm::vec2(0, 0);
 	GameObject2D::orientation = 0.0f;
 	GameObject2D::size = glm::vec2(1, 1);
-	GameObject2D::textureID = loadTexture("Resources\Textures\ReferencePointMarker.png");
-	//Thanks to https://www.geeksforgeeks.org/cpp/rand-and-srand-in-ccpp/
+	GameObject2D::textureID = loadTexture("Resources\\Textures\\ReferencePointMarker.png");
+	//TODO - Been walking into a brick wall, FreeImagePlus won't open the image file for some unkown reason and it is stress inducing with the looming deadline.
 	
 }
 
@@ -83,7 +83,7 @@ void ReferencePoint::update(double tDelta) {
 			break;
 		}
 		*/
-		Asteroid (initPos, initRot, glm::vec2(initSize, initSize), loadTexture("Resources\Textures\Asteroid1.png"), glm::vec2(10, 10));
+		Asteroid (initPos, initRot, glm::vec2(initSize, initSize), loadTexture("Resources\\Textures\\Asteroid1.png"), glm::vec2(10, 10));
 		
 		std::cout << "\nX:";
 		std::cout << initPos.x;
