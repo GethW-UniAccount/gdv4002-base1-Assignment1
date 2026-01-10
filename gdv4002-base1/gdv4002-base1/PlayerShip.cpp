@@ -87,13 +87,13 @@ void PlayerShip::update(double tDelta) {
 	{
 		if (rotationVelocity < turnSpeedCap)
 		{
-			rotationVelocity -= (1.0f * tDelta);
+			rotationVelocity += (1.0f * tDelta);
 		}
 	}
 	//input check - D
 	if (InRight)
 	{
-		rotationVelocity += (1.0f * tDelta);
+		rotationVelocity -= (1.0f * tDelta);
 	}
 	if (InDown)
 	{
