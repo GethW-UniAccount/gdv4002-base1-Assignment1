@@ -1,11 +1,14 @@
 #include "Engine.h"
 #include "PlayerShip.h"
 #include "ReferencePoint.h"
-#include <filesystem>
+//#include <filesystem> NO LONGER NEEDED
+
+
 // Function prototypes
 
 void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods);
 
+PlayerShip* Player;
 
 int main(void) {
 
@@ -28,10 +31,24 @@ int main(void) {
 	//Use the default update function, no need to set a callback here.
 	setKeyboardHandler(myKeyboardHandler);
 	std::srand(time(0));
-	PlayerShip* Player = new PlayerShip();
+
+	//preload textures so we can refer to them by their GL Unisigned Int identifiers
+		//1: Ship
+	loadTexture("Resources\\Textures\\Ship.png");
+		//2: Reference Point marker / Background
+	loadTexture("Resources\\Textures\\Background.png");
+		//3: Asteroid1
+	loadTexture("Resources\\Textures\\Asteroid1.png");
+		//4: LaserProjectile
+	loadTexture("Resources\\Textures\\LaserProjectile.png");
+	
+
+
+	Player = new PlayerShip();
 	addObject("player", Player);
 	ReferencePoint* Ref = new ReferencePoint();
 	addObject("ref", Ref);
+	
 	
 	// Enter main loop - this handles update and render calls
 	engineMainLoop();
@@ -46,7 +63,11 @@ int main(void) {
 
 void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
+
+	
+
 	//bitwise operations learned  from https://www.geeksforgeeks.org/cpp/cpp-bitwise-operators/
+	//Using key L to List game object keys, C to list counts
 	if (action == GLFW_PRESS) {
 		switch (key)
 		{
@@ -55,19 +76,25 @@ void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, in
 				glfwSetWindowShouldClose(window, true);
 				break;
 			case GLFW_KEY_W:
-				PlayerShip::Inputs::InForward | 1;
+				Player->InForward = true;
 				break;
 			case GLFW_KEY_A:
-				PlayerShip::Inputs::InLeft | 1;
+				Player->InLeft = true;
 				break;
 			case GLFW_KEY_S:
-				PlayerShip::Inputs::InDown | 1;
+				Player->InDown = true;
 				break;
 			case GLFW_KEY_D:
-				PlayerShip::Inputs::InRight | 1;
+				Player->InRight = true;
 				break;
 			case GLFW_KEY_SPACE:
-				PlayerShip::Inputs::InFire | 1;
+				Player->InFire = true;
+				break;
+			case GLFW_KEY_L:
+				listGameObjectKeys();
+				break;
+			case GLFW_KEY_C:
+				listObjectCounts();
 				break;
 		}
 	}
@@ -79,19 +106,19 @@ void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, in
 			glfwSetWindowShouldClose(window, true);
 			break;
 		case GLFW_KEY_W:
-			PlayerShip::Inputs::InForward | 1;
+			Player->InForward = false;
 			break;
 		case GLFW_KEY_A:
-			PlayerShip::Inputs::InLeft | 1;
+			Player->InLeft = false;
 			break;
 		case GLFW_KEY_S:
-			PlayerShip::Inputs::InDown | 1;
+			Player->InDown = false;
 			break;
 		case GLFW_KEY_D:
-			PlayerShip::Inputs::InRight | 1;
+			Player->InRight = false;
 			break;
 		case GLFW_KEY_SPACE:
-			PlayerShip::Inputs::InFire | 1;
+			Player->InFire = false;
 			break;
 		}
 	}

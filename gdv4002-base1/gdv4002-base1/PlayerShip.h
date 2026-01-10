@@ -12,24 +12,18 @@ public:
 	//	| 00000100 ->Do or operation with Flag3, which has a value of 4
 	//	= 00000100 ->The bit for Flag3 gets set to 1, flag value is now 4
 	// "
-	static enum Inputs {
-		InForward	= 0x01,
-		InLeft		= 0x02,
-		InDown		= 0x04,
-		InRight		= 0x08,
-		InFire		= 0x10
-		//Unused		= 0x20,
-		//Unused		= 0x40,
-		//Unused		= 0x80,
-	};
-	float		acceleration = 0.1f;
+
+	//inputs:
+
+	bool InForward;//W
+	bool InLeft;//A
+	bool InDown;//S
+	bool InRight;//D
+	bool InFire;//SPACE
+
 	float		speedCap = 10.0f;
-	float		turnSpeed = 1.0f;
 	float		turnSpeedCap = 10.0f;
 	float		fireRate = 1.0f;
-	int			extraLives = 2;
-	bool		shield = false;
-	bool		scatterLaser = false;
 	PlayerShip();
 	PlayerShip(glm::vec2 initPos, float initRot, glm::vec2 initSize, GLuint initTextureID);
 	virtual void update(double tDelta) override;
