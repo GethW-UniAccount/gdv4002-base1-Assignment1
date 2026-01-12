@@ -5,7 +5,7 @@
 
 
 // Function prototypes
-
+void myUpdate(GLFWwindow* window, double tDelta);
 void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 PlayerShip* Player;
@@ -21,14 +21,14 @@ int main(void) {
 		printf("Cannot setup game window!!!\n");
 		return initResult; // exit if setup failed
 	}
-	//
-	//Create Variables to be used later:
-	// 
-
-	// 
-	// Setup game scene objects here
-	//
-	//Use the default update function, no need to set a callback here.
+	
+	//thanks, https://stackoverflow.com/questions/5206373/opengl-texture-transparency-doesnt-work
+	//Also thanks, 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	//Use the default update function, use a callback to call after.
+	setUpdateFunction(myUpdate, false);
 	setKeyboardHandler(myKeyboardHandler);
 	std::srand(time(0));
 
@@ -43,7 +43,7 @@ int main(void) {
 	loadTexture("Resources\\Textures\\LaserProjectile.png");
 	
 
-
+	//spawn objects
 	Player = new PlayerShip();
 	addObject("player", Player);
 	ReferencePoint* Ref = new ReferencePoint();
@@ -123,4 +123,15 @@ void myKeyboardHandler(GLFWwindow* window, int key, int scancode, int action, in
 		}
 	}
 
+}
+
+void myUpdate(GLFWwindow* window, double tDelta) 
+{
+	//projectile deletion function, iterate through projectiles and delete ones marked for deletion
+	GameObjectCollection Projectiles = getObjectCollection("Projectile");
+	for (int i = 0; i < Projectiles.objectCount; i++) {
+		if (Projectiles.objectArray[i]->DeleteThis = true) {
+			deleteObject(Projectiles.objectArray[i]);
+		}
+	}
 }

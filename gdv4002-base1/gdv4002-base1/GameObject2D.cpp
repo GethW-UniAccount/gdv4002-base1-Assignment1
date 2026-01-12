@@ -9,7 +9,12 @@ GameObject2D::GameObject2D(glm::vec2 initPosition, float initOrientation, glm::v
 	orientation = initOrientation;
 	size = initSize;
 	textureID = initTextureID;
+	DeleteThis = false;
 }
+
+GameObject2D::~GameObject2D() {
+}
+
 
 void GameObject2D::render() {
 

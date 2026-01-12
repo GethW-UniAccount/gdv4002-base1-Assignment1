@@ -20,10 +20,11 @@ public:
 	bool InDown;//S
 	bool InRight;//D
 	bool InFire;//SPACE
+	bool linearDecay = false;
+	bool rotationDecay = false;
 
-	float		speedCap = 10.0f;
-	float		turnSpeedCap = 10.0f;
-	float		fireRate = 1.0f;
+	float		speedCap = 2.5f;
+	float		turnSpeedCap = 0.5f;
 	PlayerShip();
 	PlayerShip(glm::vec2 initPos, float initRot, glm::vec2 initSize, GLuint initTextureID);
 	virtual void update(double tDelta) override;

@@ -33,19 +33,19 @@ void Projectile::update(double tDelta) {
 	//Delete when offscreen
 	if (position.x > 3) //576px
 	{
-		//deleteObject(this); causes crash, assertion triggered.
+		DeleteThis = true;
 	}
 	else if (position.x < -3) //576px
 	{
-		//deleteObject(this); causes crash, assertion triggered.
+		DeleteThis = true;
 	}
 	if (position.y > 3) //576px
 	{
-		//deleteObject(this); causes crash, assertion triggered.
+		DeleteThis = true;
 	}
 	else if (position.y < -3) //576px
 	{
-		//deleteObject(this); causes crash, assertion triggered.
+		DeleteThis = true;
 	}
 	render();
 }

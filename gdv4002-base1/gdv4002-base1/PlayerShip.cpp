@@ -1,6 +1,7 @@
 #include "PlayerShip.h"
 #include "Engine.h"
 #include "Projectile.h"
+#include <string>
 PlayerShip::PlayerShip()
 {
 	GameObject2D::position = glm::vec2(0,0);
@@ -32,48 +33,49 @@ void PlayerShip::Fire() {
 
 
 
-void PlayerShip::update(double tDelta) {
+void PlayerShip::update(double tDelta)
+{
 
-	
+
 	velocity = glm::vec2(linearVelocity * cos(orientation), linearVelocity * sin(orientation));
 
 	glm::vec2 VelocityTDelta = glm::vec2(velocity.x * tDelta, velocity.y * tDelta);
 
-	//apply velocity
-	position += VelocityTDelta;
-	orientation += rotationVelocity;
 	
 	//Decay velocity based on TDelta
 	float velocityDecay = 1.0f * static_cast<float>(tDelta);
-	if (velocity.x > 0.0f)
+	if (linearDecay = true)
 	{
-		velocity.x -= velocityDecay;
+		if (velocity.x > 0.0f)
+		{
+			velocity.x -= velocityDecay;
+		}
+		else if (velocity.x < 0.0f)
+		{
+			velocity.x += velocityDecay;
+		}
+		if (velocity.y > 0.0f)
+		{
+			velocity.y -= velocityDecay;
+		}
+		else if (velocity.y < 0.0f)
+		{
+			velocity.y += velocityDecay;
+		}
 	}
-	else if (velocity.x < 0.0f)
-	{
-		velocity.x += velocityDecay;
-	}
-	if (velocity.y > 0.0f)
-	{
-		velocity.y -= velocityDecay;
-	}
-	else if (velocity.y < 0.0f)
-	{
-		velocity.y += velocityDecay;
-	}
-	if (rotationVelocity > 0.0f)
-	{
-		rotationVelocity -= velocityDecay;
-	}
-	else if (rotationVelocity < 0.0f)
-	{
-		rotationVelocity += velocityDecay;
-	}
+
+	
+
+	//apply velocity
+	position += VelocityTDelta;
+	orientation += rotationVelocity;
+
 	//Cooldown for firing
-	if (firecooldown > 0.01f)
+	if (firecooldown > 0.1f)
 	{
-		firecooldown -= (0.1f * tDelta);
+		firecooldown -= static_cast<float>(tDelta);
 	}
+
 	//input check - W
 	if (InForward)
 	{
@@ -81,54 +83,68 @@ void PlayerShip::update(double tDelta) {
 		{
 			linearVelocity += (0.25f * tDelta);
 		}
+		
 	}
+	
 	//input check - A
 	if (InLeft)
 	{
 		if (rotationVelocity < turnSpeedCap)
 		{
-			rotationVelocity += (1.0f * tDelta);
+			rotationVelocity += (0.25f * tDelta);
+			
 		}
+		
 	}
+	
 	//input check - D
 	if (InRight)
 	{
-		rotationVelocity -= (1.0f * tDelta);
+		if (rotationVelocity > (-turnSpeedCap))
+		{
+			rotationVelocity -= (0.25f * tDelta);
+			
+		}
+		
 	}
+	//input check - S
 	if (InDown)
 	{
 		if (linearVelocity < turnSpeedCap)
 		{
 			linearVelocity -= (0.25 * tDelta);
+			
 		}
+		
 	}
 	//input check - SPACE
 	if (InFire)
 	{
-		if (firecooldown < 0.01f)
+		if (firecooldown < 0.1f)
 		{
 			Fire();
-			firecooldown = 1.0f;
+			firecooldown = 1.5f;
 		}
+		std::cout << (firecooldown);
 	}
 	
-	if (position.x > 3.0f) //576px
-	{
-		position.x = -2.75f; //544px
-	}
-	else if (position.x < -3.0f) //576px
-	{
-		position.x = 2.75; //544px
-	}
-	if (position.y > 3.0f) //576px
-	{
-		position.y = -2.75; //544px
-	}
-	else if (position.y < -3.0f) //576px
-	{
-		position.y = 2.75; //544px
-	}
+	
 
+	//wrap-around
+	if (position.x > 3.0f) {
+		position.x = -2.75f;
+	}
+	if (position.x < -3.0f) {
+		position.x = 2.75f;
+	}
+	if (position.y > 3.0f) {
+		position.y = -2.75f;
+	}
+	if (position.y < -3.0f) {
+		position.y = 2.75f;
+	}
+	
 	render();
+	
 }
 
