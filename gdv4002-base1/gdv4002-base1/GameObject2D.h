@@ -22,6 +22,11 @@ public:
 
 	bool DeleteThis = false;
 
+	//how long has this object existed?
+	//(For projectiles only, but otherwise inaccessible from main if not here)
+
+	float Timer = 0.0f;
+
 	GameObject2D();
 	GameObject2D(glm::vec2 initPosition, float initOrientation, glm::vec2 initSize, GLuint initTextureID);
 

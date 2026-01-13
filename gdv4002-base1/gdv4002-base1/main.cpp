@@ -134,4 +134,9 @@ void myUpdate(GLFWwindow* window, double tDelta)
 			deleteObject(Projectiles.objectArray[i]);
 		}
 	}
+	for (int i = 0; i < Projectiles.objectCount; i++) {
+		if (Projectiles.objectArray[i]->Timer > 3.0f) {
+			deleteObject(Projectiles.objectArray[i]);
+		}
+	}
 }

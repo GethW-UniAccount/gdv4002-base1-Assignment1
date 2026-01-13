@@ -35,34 +35,51 @@ void PlayerShip::Fire() {
 
 void PlayerShip::update(double tDelta)
 {
+	glm::vec2 velocityToAdd;
 
-
-	velocity = glm::vec2(linearVelocity * cos(orientation), linearVelocity * sin(orientation));
-
-	glm::vec2 VelocityTDelta = glm::vec2(velocity.x * tDelta, velocity.y * tDelta);
-
+	velocityToAdd = glm::vec2(linearVelocity * cos(orientation), linearVelocity * sin(orientation));
 	
-	//Decay velocity based on TDelta
-	float velocityDecay = 1.0f * static_cast<float>(tDelta);
-	if (linearDecay = true)
+	velocity += velocityToAdd;
+	glm::vec2 VelocityTDelta = glm::vec2(velocity.x * tDelta, velocity.y * tDelta);
+	
+
+
+	if (velocity.x > speedCap)
 	{
-		if (velocity.x > 0.0f)
-		{
-			velocity.x -= velocityDecay;
-		}
-		else if (velocity.x < 0.0f)
-		{
-			velocity.x += velocityDecay;
-		}
-		if (velocity.y > 0.0f)
-		{
-			velocity.y -= velocityDecay;
-		}
-		else if (velocity.y < 0.0f)
-		{
-			velocity.y += velocityDecay;
-		}
+		velocity.x = speedCap;
 	}
+	else if (velocity.x < (speedCap * -1))
+	{
+		velocity.x = (speedCap * -1);
+	}
+	if (velocity.y > speedCap)
+	{
+		velocity.y = speedCap;
+	}
+	else if (velocity.y < (speedCap * -1))
+	{
+		velocity.y = (speedCap * -1);
+	}
+
+	//Decay velocity based on TDelta
+	float velocityDecayX = (velocity.x * -5.0f) * static_cast<float>(tDelta);
+	float velocityDecayY = (velocity.y * -5.0f) * static_cast<float>(tDelta);
+	float velocityDecayR = (rotationVelocity * -1.0f) * static_cast<float>(tDelta);
+
+		if (velocity.x > 0.0f || velocity.x < 0.0f)
+		{
+			velocity.x += velocityDecayX;
+		}
+		if (velocity.y > 0.0f || velocity.y < 0.0f)
+		{
+			velocity.y += velocityDecayY;
+		}
+		if (rotationVelocity > 0.0f || rotationVelocity < 0.0f)
+		{
+			rotationVelocity += velocityDecayR;
+		}
+		
+	
 
 	
 

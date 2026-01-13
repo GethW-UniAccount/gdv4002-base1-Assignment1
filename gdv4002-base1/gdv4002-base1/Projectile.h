@@ -10,4 +10,5 @@ public:
 private:
 	glm::vec2		velocity = glm::vec2(0, 0);
 	float speed = 2;
+	
 };

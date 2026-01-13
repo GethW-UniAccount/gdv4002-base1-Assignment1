@@ -29,23 +29,28 @@ void Projectile::update(double tDelta) {
 
 	position += (VelocityTDelta);
 
-
+	
 	//Delete when offscreen
-	if (position.x > 3) //576px
+	if (position.x > 3)
 	{
 		DeleteThis = true;
 	}
-	else if (position.x < -3) //576px
+	else if (position.x < -3)
 	{
 		DeleteThis = true;
 	}
-	if (position.y > 3) //576px
+	if (position.y > 3)
 	{
 		DeleteThis = true;
 	}
-	else if (position.y < -3) //576px
+	else if (position.y < -3)
 	{
 		DeleteThis = true;
 	}
+	//additional way to delete the object,
+	//since traditional position-based deletion seems not to work,
+	//we delete it after 3 seconds.
+	Timer += tDelta;
+
 	render();
 }
