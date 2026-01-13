@@ -16,6 +16,9 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{84855feb-8d03-4d9e-a7b0-0ef0c05489c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Non-Engine Header Files">
+      <UniqueIdentifier>{f6441c91-10c5-4c2e-bb7e-5124fa9ef487}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,9 +56,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PlayerShip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="texture_loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,14 +77,17 @@
     <ClInclude Include="GameObject2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Non-Engine Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerShip.h">
+      <Filter>Non-Engine Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Asteroid.h">
-      <Filter>Header Files</Filter>
+      <Filter>Non-Engine Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ReferencePoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Header Files</Filter>
+      <Filter>Non-Engine Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
