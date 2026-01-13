@@ -62,7 +62,7 @@ void Asteroid::update(double tDelta) {
 }
 
 
-void Asteroid::Break() {
+/*void Asteroid::Break() {
 	//glm::vec2 Pos = GameObject2D::position;
 	//glm::vec2 Size = GameObject2D::size;
 	float VelX;
@@ -71,7 +71,7 @@ void Asteroid::Break() {
 	VelY = static_cast<float>((std::rand() % 4) - 2);
 	Asteroid* AsteroidObj = new Asteroid(glm::vec2(0,0), glm::radians(static_cast<float>(std::rand() % 360)), glm::vec2(size.x/2, size.y/2), 3, glm::vec2(VelX, VelY), static_cast<float>((std::rand() % 4) - 2));
 	addObject("AsteroidInstance", AsteroidObj);
-}
+}*/
 
 
 
