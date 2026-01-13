@@ -161,37 +161,9 @@ copy "$(SolutionDir)Libs\FreeImage\Wrapper\FreeImagePlus\dist\x64\FreeImagePlus.
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Asteroid1.png" />
-    <Image Include="Resources\Textures\Asteroid2.png" />
-    <Image Include="Resources\Textures\Asteroid3.png" />
     <Image Include="Resources\Textures\Background.png" />
     <Image Include="Resources\Textures\LaserProjectile.png" />
-    <Image Include="Resources\Textures\LifeCrate.png" />
-    <Image Include="Resources\Textures\PowerUpCrate.png" />
-    <Image Include="Resources\Textures\ReferencePointMarker.png" />
-    <Image Include="Resources\Textures\ScatterPickup.png" />
-    <Image Include="Resources\Textures\ShieldPickup.png" />
     <Image Include="Resources\Textures\Ship.png" />
-    <Image Include="Resources\Textures\ShipDestroy1.png" />
-    <Image Include="Resources\Textures\ShipDestroy2.png" />
-    <Image Include="Resources\Textures\ShipFire.png" />
-    <Image Include="Resources\Textures\ShipFireShield.png" />
-    <Image Include="Resources\Textures\ShipForward.png" />
-    <Image Include="Resources\Textures\ShipForwardFire.png" />
-    <Image Include="Resources\Textures\ShipForwardFireShield.png" />
-    <Image Include="Resources\Textures\ShipForwardShield.png" />
-    <Image Include="Resources\Textures\ShipLeft.png" />
-    <Image Include="Resources\Textures\ShipLeftFire.png" />
-    <Image Include="Resources\Textures\ShipLeftFireShield.png" />
-    <Image Include="Resources\Textures\ShipLeftShield.png" />
-    <Image Include="Resources\Textures\ShipRight.png" />
-    <Image Include="Resources\Textures\ShipRightFire.png" />
-    <Image Include="Resources\Textures\ShipRightFireShield.png" />
-    <Image Include="Resources\Textures\ShipRightShield.png" />
-    <Image Include="Resources\Textures\ShipShield.png" />
-    <Image Include="Resources\Textures\ThrusterPickup.png" />
-    <Image Include="Resources\Textures\UFO.png" />
-    <Image Include="Resources\Textures\UFODamage.png" />
-    <Image Include="Resources\Textures\UFOFire.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
